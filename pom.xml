@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+	<groupId>com.jd.jsl.dd</groupId>
+	<artifactId>jsl-dd-workbench</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>jsl-dd-workbench</name>
+	<description>jsl customer service project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.6.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<!--子模块管理-->
+    <modules>
+		<module>jsl-dd-workbench-dao</module>
+        <module>jsl-dd-workbench-domain</module>
+        <module>jsl-dd-workbench-service</module>
+        <module>jsl-dd-workbench-web</module>
+    </modules>
+
+	<!--版本号管理-->
+	<properties>
+		<jsl.domain.version>0.0.1-SNAPSHOT</jsl.domain.version>
+		<jsl.service.version>0.0.1-SNAPSHOT</jsl.service.version>
+		<springboot.version>2.2.6.RELEASE</springboot.version>
+		<java.version>1.8</java.version>
+		<assembly.version>2.4</assembly.version>
+		<junit.version>4.12</junit.version>
+		<alibaba.json.version>1.2.70</alibaba.json.version>
+		<beanutils.version>1.9.2</beanutils.version>
+		<jsf2.version>1.1.0-RELEASE</jsf2.version>
+		<jsf1.version>1.6.9</jsf1.version>
+		<javassist.version>3.27.0-GA</javassist.version>
+		<json-path.vesion>2.4.0</json-path.vesion>
+		<jsl-base-api.version>1.0-SNAPSHOT</jsl-base-api.version>
+		<poi-excelant.version>4.0.1</poi-excelant.version>
+		<httpclient.version>4.5.12</httpclient.version>
+		<dd-gateway-api.version>1.0.0-SNAPSHOT</dd-gateway-api.version>
+		<im-domain.version>4.2.1-SNAPSHOT</im-domain.version>
+	</properties>
+
+	<!--公共依赖-子模块统一继承-->
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!--选择依赖-子模块选择引入:注意必须是正式版，否则子模块无法引入-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.jd.jsl.dd.domain</groupId>
+				<artifactId>jsl-dd-workbench-domain</artifactId>
+				<version>${jsl.domain.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jd.jsl.dd.service</groupId>
+				<artifactId>jsl-dd-workbench-service</artifactId>
+				<version>${jsl.service.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>${springboot.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>spring-boot-starter-logging</artifactId>
+						<groupId>org.springframework.boot</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<version>${springboot.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${springboot.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.junit.vintage</groupId>
+						<artifactId>junit-vintage-engine</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${springboot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-undertow</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-log4j2</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${alibaba.json.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${beanutils.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path</artifactId>
+				<version>${json-path.vesion}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-excelant</artifactId>
+				<version>${poi-excelant.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<!--项目构建-->
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${assembly.version}</version>
+					<configuration>
+						<finalName>${artifactId}</finalName>
+						<descriptors>
+							<descriptor>src/main/build/assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>assembly</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<skipTests>true</skipTests>  <!--默认关闭单元测试 -->
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
